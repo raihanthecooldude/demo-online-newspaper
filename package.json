@@ -1,0 +1,33 @@
+{
+  "name": "demo-online-newspaper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raihanthecooldude/demo-online-newspaper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raihanthecooldude/demo-online-newspaper/issues"
+  },
+  "homepage": "https://github.com/raihanthecooldude/demo-online-newspaper#readme",
+  "dependencies": {
+    "@prisma/client": "^3.14.0",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "config": "^3.3.7",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.16"
+  },
+  "devDependencies": {
+    "prisma": "^3.14.0"
+  }
+}

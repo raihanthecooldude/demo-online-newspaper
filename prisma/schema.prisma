@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id      Int      @id @default(autoincrement())
+  email   String   @unique
+  name    String   @db.VarChar(255)
+  password String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  admin Admin?
+  editor Editor?
+}
+
+model Admin {
+  id      Int      @id @default(autoincrement())
+  user   User    @relation(fields: [userId], references: [id])
+  userId Int     @unique
+  createdAt DateTime @default(now()) @map("created_at")
+}
+
+model Editor {
+  id      Int      @id @default(autoincrement())
+  activeStatus ActiveStatus @default(INACTIVE)
+  user   User    @relation(fields: [userId], references: [id])
+  userId Int     @unique
+  createdAt DateTime @default(now())  @map("created_at")
+  updatedAt DateTime @default(now())  @updatedAt @map("updated_at")
+  articles Article[]
+}
+
+model Article {
+  id        Int      @id @default(autoincrement())
+  title     String   @db.VarChar(255)
+  body   String?
+  published Boolean  @default(false)
+  editor   Editor    @relation(fields: [editorId], references: [id])
+  editorId Int     
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+}
+
+enum ActiveStatus {
+  ACTIVE
+  INACTIVE
+}
